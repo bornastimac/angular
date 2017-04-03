@@ -1,0 +1,12 @@
+<md-card class="login-container">
+  <i class="material-icons icon">account_circle</i>
+<form (ngSubmit)="onSubmit(username.value, password.value)" class="form">
+  <md-input-container>
+    <input #username mdInput placeholder="Korisničko ime" required>
+  </md-input-container>
+  <md-input-container>
+    <input #password mdInput type="password" placeholder="Lozinka" required>
+  </md-input-container>
+  <button md-raised-button type="submit" color="accent"> Prijavi se</button>
+</form>
+</md-card>
