@@ -1,3 +1,74 @@
-<p>
-  registracija works!
-</p>
+<md-card class="registracija-container">
+  <md-card-title>
+    Registracija
+  </md-card-title>
+  <md-card-content>
+    <md-radio-group  style="display:flex" [(ngModel)]="tipReg">
+      <md-radio-button style="flex:1" value="fizickaOsoba">
+        <label> Fizička osoba</label>
+      </md-radio-button>
+      <md-radio-button style="flex:1" value="pravnaOsoba">
+        <label> Pravna osoba </label>
+      </md-radio-button>
+    </md-radio-group>
+    <!-- FORM  -->
+    <form class="form" (ngSubmit)="onSubmit()">
+
+      <md-radio-group *ngIf="tipReg === 'fizickaOsoba'" style="display:flex">
+        <md-radio-button style="flex:1" value="slobodniRadnik">
+          <label > Zaposlenik </label>
+        </md-radio-button>
+        <md-radio-button style="flex:1" value="slobodniRadnik">
+          <label> Freelancer </label>
+        </md-radio-button>
+      </md-radio-group>
+      
+      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+        <input mdInput #companyName required placeholder="Ime tvrtke">
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput #username required placeholder="Korisničko ime">
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput #password required type="password" placeholder="Lozinka">
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput #passCheck required type="password" placeholder="Potvrda lozinke">
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput #email required placeholder="E-mail">
+      </md-input-container>
+
+      <md-select placeholder="Struka" [(ngModel)]="odabranaStruka" [ngModelOptions]="{standalone: true}">
+        <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
+          {{ struka.viewValue }}
+        </md-option>
+      </md-select>
+
+       <md-input-container *ngIf="tipReg === 'fizickaOsoba'">
+          <input #keyword mdInput placeholder="Kljucna rijec">
+       </md-input-container>
+
+       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+            <input #faks mdInput placeholder="Faks">
+       </md-input-container>
+
+       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+                <input #ime mdInput placeholder="Ime kontakt osobe">
+              </md-input-container>
+              <md-input-container>
+                <input #brTelefona mdInput placeholder="Broj telefona">
+              </md-input-container>
+
+      <button md-raised-button type="submit" color="accent"> Registriraj me </button>
+    </form>
+
+
+
+
+  </md-card-content>
+</md-card>

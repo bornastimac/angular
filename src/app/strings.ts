@@ -1,4 +1,4 @@
-import {Iuser} from './data';
+import {IUser} from './data';
 export class Strings
 {
      public kljucneRijeci="Upišite riječi pomoću kojih želite da se pronađe Vaš profil";
@@ -62,5 +62,5 @@ Uvjeti korištenja podložni su promjeni bez prethodne najave. Usluge objave ogl
   
   public static domainAndPort = "192.168.1.134:1105";
   //public static domainAndPort = "jimsrv.no-ip.info/InProfesa2";
-  public static loggedUser:Iuser = {username:"", password:""};
+  public static loggedUser:IUser = {username:"", password:""};
 }
