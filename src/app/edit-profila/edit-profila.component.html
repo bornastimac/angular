@@ -1,0 +1,51 @@
+<md-card >
+  <md-card-title>
+    Uređivanje profila
+  </md-card-title>
+  <md-card-content class="edit-profile" >
+    <md-input-container>
+      <input mdInput placeholder="Korisničko ime" value="tekst" >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Ime" value= {{user.FirstName}} >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Prezime" value= {{user.LastName}} >
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Email" value= {{user.Email}} >
+    </md-input-container>
+   
+    <md-select style="font-size:14px;" placeholder="Struka" name="odabranaStruka" ngModel>
+      <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
+        {{ struka.viewValue }}
+      </md-option>
+    </md-select>
+  
+    <md-input-container>
+      <textarea mdInput placeholder="Ključne riječi(odvojene zarezom)"> {{user.Keywords}}</textarea>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Grad" value= {{user.City}} >
+    </md-input-container>
+    <md-input-container>
+      <textarea mdInput placeholder="O meni"> {{user.AboutMe}} </textarea>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Kontakt(broj telefona)" value= {{user.Phone}}>
+    </md-input-container>
+    <div *ngIf="user.IsCompany === 'true'">
+      <md-input-container>
+        <input mdInput  placeholder="Ime tvrtke" value= {{user.CompanyName}}>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Faks" value= {{user.Fax}}>
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput placeholder="Kontakt(broj telefona)" value= {{user.ContactPhone}}>
+      </md-input-container>
+    </div>
+
+  </md-card-content>
+</md-card>

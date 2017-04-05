@@ -35,7 +35,7 @@ export class FooterComponent implements OnInit {
 }
 
 @Component({
-  template: ` <i (click)="dialogRef.close()" class="material-icons" style="float: right;">close</i>
+  template: ` <i (click)="dialogRef.close()" class="material-icons" style="float: right; cursor: pointer">close</i>
              <h1 md-dialog-title> Kontakt </h1>
               <md-input-container>
                 <input #ime mdInput placeholder="Ime i prezime ili naziv tvrtke">
@@ -86,7 +86,7 @@ export class KontaktDialog {
 
 
 @Component({
-  template: ` <i (click)="dialogRef.close()" class="material-icons" style="float: right;">close</i>
+  template: ` <i (click)="dialogRef.close()" class="material-icons" style="float: right; cursor: pointer;">close</i>
               <md-dialog-content>
                 <label> {{text}} </label>
               </md-dialog-content>

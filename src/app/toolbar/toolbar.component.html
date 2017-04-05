@@ -2,14 +2,16 @@
     <label class="headline"> In Profesa</label>
     <a *ngIf="!isLogged()" class="navlink"> Login </a>
     <a *ngIf="!isLogged()" class="navlink"> Registracija </a>
-      <label style="color: white;" *ngIf="isLogged()"> {{currentUser.username}} </label>
-      <i *ngIf="isLogged()" class="identity-icon material-icons mobile-hidden">person</i>
+    <div *ngIf="isLogged()">
+      <label style="color: white;" > {{currentUser.username}} </label>
+      <i class="identity-icon material-icons mobile-hidden" [mdMenuTriggerFor]="menu">person</i>
+    </div>
     <div class="identity-container">
       <i class="identity-icon material-icons" [mdMenuTriggerFor]="menu">person</i>
     </div>
     <md-menu  #menu="mdMenu">
-      <a md-menu-item > Login </a>
-      <a md-menu-item > Registracija </a>
-      <a md-menu-item> Logout </a>
+      <a *ngIf="!isLogged()" md-menu-item > Login </a>
+      <a *ngIf="!isLogged()" md-menu-item > Registracija </a>
+      <a *ngIf="isLogged()" md-menu-item> Logout </a>
     </md-menu>
   </nav>

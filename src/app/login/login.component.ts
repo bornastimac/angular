@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { MdSnackBar } from '@angular/material';
 
 import { LoginService } from '../login.service';
-import { ILogin, User,IUser } from '../data';
+import { ILogin, User,IUser, IUserInfo } from '../data';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ILogin, User,IUser } from '../data';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  response: ILogin;
+  response: any;
   user: IUser;
   constructor(private loginService: LoginService, private snackbar:MdSnackBar) { }
 
@@ -33,15 +33,15 @@ onSubmit(username: string, password: string) {
   }
   afterLogin(){
     
-          if(this.response.Login === "True")
+          if(this.response.Login === "true")
           {
               this.snackbar.open("Uspješna prijava", 'X', {duration:3000});
               User.loggedUser = this.user;
-              
+              User.userInfo = this.response;
+              console.log(JSON.stringify(User.userInfo));
           }
           else
             this.snackbar.open("Neuspješna prijava", 'X', {duration:5000});
-
         }
   ngOnInit() {
   }

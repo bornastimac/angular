@@ -3,72 +3,61 @@
     Registracija
   </md-card-title>
   <md-card-content>
-    <md-radio-group  style="display:flex" [(ngModel)]="tipReg">
+    <md-radio-group style="display:flex" [(ngModel)]="tipReg">
       <md-radio-button style="flex:1" value="fizickaOsoba">
-        <label> Fizička osoba</label>
+        Fizička osoba
       </md-radio-button>
       <md-radio-button style="flex:1" value="pravnaOsoba">
-        <label> Pravna osoba </label>
+        Pravna osoba
       </md-radio-button>
     </md-radio-group>
     <!-- FORM  -->
-    <form class="form" (ngSubmit)="onSubmit()">
+    <form class="regform" #form="ngForm" (ngSubmit)="onSubmit(form.value)" >
 
-      <md-radio-group *ngIf="tipReg === 'fizickaOsoba'" style="display:flex">
-        <md-radio-button style="flex:1" value="slobodniRadnik">
-          <label > Zaposlenik </label>
-        </md-radio-button>
-        <md-radio-button style="flex:1" value="slobodniRadnik">
-          <label> Freelancer </label>
-        </md-radio-button>
-      </md-radio-group>
-      
       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
-        <input mdInput #companyName required placeholder="Ime tvrtke">
+        <input mdInput name="companyName" required placeholder="Ime tvrtke" ngModel>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput #username required placeholder="Korisničko ime">
+        <input mdInput name="username" required placeholder="Korisničko ime" ngModel>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput #password required type="password" placeholder="Lozinka">
+        <input mdInput name="password" required type="password" placeholder="Lozinka" ngModel>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput #passCheck required type="password" placeholder="Potvrda lozinke">
+        <input mdInput name="passCheck" required type="password" placeholder="Potvrda lozinke" ngModel>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput #email required placeholder="E-mail">
+        <input mdInput name="email" required placeholder="E-mail" ngModel>
       </md-input-container>
 
-      <md-select placeholder="Struka" [(ngModel)]="odabranaStruka" [ngModelOptions]="{standalone: true}">
-        <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
+      <md-select style="font-size:14px;" placeholder="Struka" name="odabranaStruka" ngModel>
+        <md-option style="font-size:14px;" *ngFor="let struka of listaStruka" [value]="struka.value">
           {{ struka.viewValue }}
         </md-option>
       </md-select>
 
-       <md-input-container *ngIf="tipReg === 'fizickaOsoba'">
-          <input #keyword mdInput placeholder="Kljucna rijec">
-       </md-input-container>
+      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+        <input name="faks" mdInput placeholder="Faks" ngModel>
+      </md-input-container>
 
-       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
-            <input #faks mdInput placeholder="Faks">
-       </md-input-container>
-
-       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
-                <input #ime mdInput placeholder="Ime kontakt osobe">
-              </md-input-container>
-              <md-input-container>
-                <input #brTelefona mdInput placeholder="Broj telefona">
-              </md-input-container>
+      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+        <input name="kontaktIme" mdInput placeholder="Kontakt(ime)" ngModel>
+      </md-input-container>
+      <md-input-container>
+        <input name="brTelefona" mdInput placeholder="Kontakt(broj telefona)" ngModel>
+      </md-input-container>
+      <md-input-container>
+        <textarea name="kljucneRijeci" mdInput placeholder="Ključne riječi(odvojene zarezom)" ngModel></textarea>
+      </md-input-container>
+    
+    <md-checkbox name="slazemSe" ngModel required>Slazem se s uvjetima korištenja </md-checkbox>
 
       <button md-raised-button type="submit" color="accent"> Registriraj me </button>
     </form>
-
-
-
 
   </md-card-content>
 </md-card>

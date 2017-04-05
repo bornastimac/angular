@@ -1,13 +1,11 @@
 .registracija-container{
-    display: flex;
+  display: flex;
   flex-direction: column;
   margin: 1rem;
-  align-items: center;
-  position: fixed;
-  top: 5rem;
+  align-items: center;  
 }
 
-.form{
+.regform{
   display: flex;
   flex-direction: column;
 }

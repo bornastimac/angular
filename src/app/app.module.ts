@@ -14,10 +14,14 @@ import { FooterComponent } from './footer/footer.component';
 //services
 import { LoginService } from './login.service';
 import { KontaktService } from './kontakt.service';
+import { RegistracijaService } from './registracija.service';
 
 
 //dialogs
 import { KontaktDialog,InfoDialog } from './footer/footer.component';
+import { PrikazOglasaComponent } from './prikaz-oglasa/prikaz-oglasa.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { EditProfilaComponent } from './edit-profila/edit-profila.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { KontaktDialog,InfoDialog } from './footer/footer.component';
     RegistracijaComponent,
     FooterComponent,
     InfoDialog,
-    KontaktDialog
+    KontaktDialog,
+    PrikazOglasaComponent,
+    SearchbarComponent,
+    EditProfilaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import { KontaktDialog,InfoDialog } from './footer/footer.component';
     HttpModule,
     MaterialModule,
   ],
-  providers: [LoginService, KontaktService],
+  providers: [LoginService, KontaktService,RegistracijaService],
   bootstrap: [AppComponent],
   entryComponents: [InfoDialog, KontaktDialog],
 

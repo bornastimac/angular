@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
-import { RegistracijaService } from '../registracija.service';
+import { User } from '../data';
+
 @Component({
-  selector: 'app-registracija',
-  templateUrl: './registracija.component.html',
-  styleUrls: ['./registracija.component.css']
+  selector: 'app-edit-profila',
+  templateUrl: './edit-profila.component.html',
+  styleUrls: ['./edit-profila.component.css']
 })
-export class RegistracijaComponent implements OnInit {
-  private tipReg: string = "fizickaOsoba";
-  constructor(public snackBar: MdSnackBar, public registracijaService: RegistracijaService) { }
-  odabranaStruka: string;
-  kljucneRijeci: string;
-  odgovor;
+export class EditProfilaComponent implements OnInit {
+  user;
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -40,48 +36,29 @@ export class RegistracijaComponent implements OnInit {
     { value: 'Znanost i školstvo', viewValue: 'Znanost i školstvo' },
     { value: 'Ostalo', viewValue: 'Ostalo' }
   ];
+  constructor() {
+    // this.user = User.userInfo;
+    this.user = {
+      Login: "true",
+      IsCompany: "false",
+      FirstName: "",
+      LastName: "",
+      Email: "stimacborna@gmail.com",
+      Profession: "Racunarstvo, informatika i telekomunikacije",
+      Keywords: "sadsad",
+      City: "",
+      AboutMe: "",
+      Phone: "",
+      CompanyName: "",
+      Fax: "",
+      ContactName: "",
+      ContactPhone: ""
+    }
+
+  }
   ngOnInit() {
   }
 
-  onSubmit(form: any) {
-
-    if (form.password != form.passCheck)
-      this.snackBar.open("Lozinka i ponovljena lozinka se ne podudaraju", "X", { duration: 2000 });
-    else if (this.tipReg === "pravnaOsoba") {
-      let jsonToSend =
-        {
-          CompanyName: form.companyName,
-          Username: form.username,
-          Password: form.password,
-          Email: form.email,
-          Profession: form.odabranaStruka,
-          Keywords: form.kljucneRijeci,
-          Fax: form.faks,
-          ContactName: form.kontaktIme,
-          ContactPhone: form.brTelefona
-        }
-      console.log(jsonToSend);
-      this.registracijaService.getRegistracijaPravnaResponse(jsonToSend).subscribe(res => {
-        this.odgovor = res;
-        console.log(JSON.stringify(this.odgovor));
-      })
-    }
-    else if (this.tipReg === "fizickaOsoba") {
-      let jsonToSend =
-        {
-          Username: form.username,
-          Password: form.password,
-          Email: form.email,
-          Profession: form.odabranaStruka,
-          Phone: form.brTelefona,
-          Keywords: form.kljucneRijeci
-        }
-      console.log(jsonToSend);
-      this.registracijaService.getRegistracijaFizickaResponse(jsonToSend).subscribe(res => {
-        this.odgovor = res;
-        console.log(JSON.stringify(this.odgovor));
-      })
-    }
-  }
 }
+
 
