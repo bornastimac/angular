@@ -12,7 +12,7 @@
       </md-radio-button>
     </md-radio-group>
     <!-- FORM  -->
-    <form class="regform" #form="ngForm" (ngSubmit)="onSubmit(form.value)" >
+    <form class="reg-form" #form="ngForm" (ngSubmit)="onSubmit(form.value)" >
 
       <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
         <input mdInput name="companyName" required placeholder="Ime tvrtke" ngModel>

@@ -34,7 +34,7 @@ export interface IOglas {
 
 export interface IUserInfo{
     Login: boolean,
-    IsCompany: boolean,
+    IsCompany: string,
     FirstName: string,
     LastName: string,
     Email: string,
@@ -52,4 +52,5 @@ export interface IUserInfo{
 export class User{
     public static loggedUser:IUser = {username:"", password:""};
     public static userInfo :IUserInfo;
+
 }

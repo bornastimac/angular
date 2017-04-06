@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginService } from './login.service';
 import { KontaktService } from './kontakt.service';
 import { RegistracijaService } from './registracija.service';
+import { EditProfilaService } from './edit-profila.service';
 
 
 //dialogs
@@ -42,7 +43,7 @@ import { EditProfilaComponent } from './edit-profila/edit-profila.component';
     HttpModule,
     MaterialModule,
   ],
-  providers: [LoginService, KontaktService,RegistracijaService],
+  providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService],
   bootstrap: [AppComponent],
   entryComponents: [InfoDialog, KontaktDialog],
 

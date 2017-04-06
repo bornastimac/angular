@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../data';
+import { EditProfilaService } from '../edit-profila.service';
 
 @Component({
   selector: 'app-edit-profila',
@@ -7,7 +8,12 @@ import { User } from '../data';
   styleUrls: ['./edit-profila.component.css']
 })
 export class EditProfilaComponent implements OnInit {
-  user;
+  userInfo;
+  editInfo;
+  data;
+  private isTvrtka;
+  //odabranaStruka = User.userInfo.Profession;
+  odabranaStruka = "Racunarstvo, informatika i telekomunikacije";
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -36,9 +42,9 @@ export class EditProfilaComponent implements OnInit {
     { value: 'Znanost i školstvo', viewValue: 'Znanost i školstvo' },
     { value: 'Ostalo', viewValue: 'Ostalo' }
   ];
-  constructor() {
-    // this.user = User.userInfo;
-    this.user = {
+  constructor(public editProfilaService: EditProfilaService) {
+    // this.userInfo = User.userInfo;
+    this.userInfo = {
       Login: "true",
       IsCompany: "false",
       FirstName: "",
@@ -54,11 +60,42 @@ export class EditProfilaComponent implements OnInit {
       ContactName: "",
       ContactPhone: ""
     }
+    if(this.userInfo.IsCompany === "true")
+      this.isTvrtka = true;
+    else if(this.userInfo.IsCompany === "false")
+      this.isTvrtka = false;
+
 
   }
-  ngOnInit() {
-  }
+  onSubmit(ime, prezime, email, kljucneRijeci, grad, oMeni, kontakt, imeTvrtke, faks, kontaktBroj) {
+   
+      this.editInfo = {
+        Username: "borna",
+        FirstName: ime.value,
+        LastName: prezime.value,
+        Email: email.value,
+        Profession: this.odabranaStruka,
+        Keywords: kljucneRijeci.value,
+        City: grad.value,
+        AboutMe: oMeni.value,
+        Phone: kontakt.value,
+        CompanyName: imeTvrtke.value,
+        Fax: faks.value,
+        ContactName: "", //??
+        ContactPhone: kontaktBroj.value
+      }
+    
+ console.log(JSON.stringify(this.editInfo));
+    
+      this.editProfilaService.getEditProfilaResponse(this.editInfo).subscribe(res => {
+        this.data = res;
+        console.log(JSON.stringify(this.data));
+      })
 
-}
+    }
+    ngOnInit() {
+    }
+
+  }
 
 
