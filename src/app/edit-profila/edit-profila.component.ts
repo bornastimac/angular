@@ -70,7 +70,7 @@ export class EditProfilaComponent implements OnInit {
   onSubmit(ime, prezime, email, kljucneRijeci, grad, oMeni, kontakt, imeTvrtke, faks, kontaktBroj) {
    
       this.editInfo = {
-        Username: "borna",
+        UserName: "borna",
         FirstName: ime.value,
         LastName: prezime.value,
         Email: email.value,

@@ -1,0 +1,23 @@
+.searchbar{
+	display: flex;
+	width: 80%;
+	border:#000000;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.pretraga-input{
+	font-size: 2rem;
+	color:#fffff0; 
+	background: transparent;
+	height: 3rem;
+	flex: 4;
+}
+
+.icon-div{
+	color: #fffff0;
+	flex: 1;
+    display: flex;
+	background-color:rgba(255, 255, 240, 0.2);
+	cursor: pointer;
+}

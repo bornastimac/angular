@@ -13,7 +13,7 @@ import { ILogin, User,IUser, IUserInfo } from '../data';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  response: any;
+  response: IUserInfo;
   user: IUser;
   constructor(private loginService: LoginService, private snackbar:MdSnackBar) { }
 

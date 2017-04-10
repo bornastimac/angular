@@ -51,7 +51,7 @@
         <input name="brTelefona" mdInput placeholder="Kontakt(broj telefona)" ngModel>
       </md-input-container>
       <md-input-container>
-        <textarea name="kljucneRijeci" mdInput placeholder="Ključne riječi(odvojene zarezom)" ngModel></textarea>
+        <textarea [(ngModel)]= "kljucneRijeci" mdInput placeholder="Ključne riječi(odvojene zarezom)" [ngModelOptions]="{standalone: true}"></textarea>
       </md-input-container>
     
     <md-checkbox name="slazemSe" ngModel required>Slazem se s uvjetima korištenja </md-checkbox>

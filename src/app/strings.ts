@@ -62,5 +62,4 @@ Uvjeti korištenja podložni su promjeni bez prethodne najave. Usluge objave ogl
   
   public static domainAndPort = "192.168.1.134:1105";
   //public static domainAndPort = "jimsrv.no-ip.info/InProfesa2";
-  public static loggedUser:IUser = {username:"", password:""};
 }

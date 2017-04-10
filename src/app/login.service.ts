@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { ILogin, ILogout, IUser } from './data';
+import { ILogin, ILogout, IUser, IUserInfo } from './data';
 import { Strings } from './strings';
 
 
@@ -13,7 +13,7 @@ private logoutUrl ="http://" + Strings.domainAndPort + "/api/Logout";
 
  constructor(private http: Http) { }
 
-  getLoginResponse(user: IUser): Observable<any>
+  getLoginResponse(user: IUser): Observable<IUserInfo>
   {
      let body = {Username: user.username, Password: user.password};
      let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});

@@ -1,0 +1,33 @@
+<md-card class="predaja-container">
+  <md-card-title>
+    Predaja oglasa
+  </md-card-title>
+  <md-card-content >
+    <form class="predaja-form" #form="ngForm" (ngSubmit)="predajOglas(form.value)">
+
+      <md-input-container>
+        <input name="naslov" required mdInput placeholder="Naslov oglasa" ngModel>
+      </md-input-container>
+
+      <md-input-container>
+        <input name="struka" required mdInput placeholder="Struka" ngModel>
+      </md-input-container>
+
+      <md-input-container>
+        <textarea [(ngModel)]="textOglasa" minRows="7" mdInput placeholder="Tekst oglasa" [ngModelOptions]="{standalone: true}"></textarea>
+      </md-input-container>
+
+
+      <md-radio-group [(ngModel)]="radio" [ngModelOptions]="{standalone: true}">
+        <md-radio-button value="Supply">
+          Ponuda
+        </md-radio-button>
+        <md-radio-button value="Demand">
+          Potražnja
+        </md-radio-button>
+      </md-radio-group>
+      <button md-raised-button style="margin:auto" color="accent" type="submit"> Predaj oglas </button>
+    </form>
+  </md-card-content>
+
+</md-card>

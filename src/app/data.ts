@@ -31,9 +31,21 @@ export interface IOglas {
   Title: string;
   AdText: string;
 }
+export interface IpredajaOglasa {
+    Username: string;
+    Title:    string;
+    Profession: string;
+    Text:     string;
+    AdType:   string;
+}
+
+export interface predajaJsonResponse {
+  AdPostStatus: string;
+}
+
 
 export interface IUserInfo{
-    Login: boolean,
+    Login: string,
     IsCompany: string,
     FirstName: string,
     LastName: string,

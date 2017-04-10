@@ -1,3 +1,6 @@
-<p>
-  searchbar works!
-</p>
+<div class="searchbar">
+  <input #pretraga type="text" class="pretraga-input" placeholder="Pretraži oglase">
+  <div (click)="pretraziOglase(pretraga.value)" class="icon-div">
+    <i class="material-icons" style="color: #fffff0; margin: auto;">search</i>
+  </div>
+</div>

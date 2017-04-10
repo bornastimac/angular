@@ -4,25 +4,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
+//services
+import { LoginService } from './login.service';
+import { KontaktService } from './kontakt.service';
+import { RegistracijaService } from './registracija.service';
+import { EditProfilaService } from './edit-profila.service';
+import { PredajaOglasaService } from './predaja-oglasa.service';
+
+//dialogs
+import { KontaktDialog,InfoDialog } from './footer/footer.component';
 //components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { FooterComponent } from './footer/footer.component';
-
-//services
-import { LoginService } from './login.service';
-import { KontaktService } from './kontakt.service';
-import { RegistracijaService } from './registracija.service';
-import { EditProfilaService } from './edit-profila.service';
-
-
-//dialogs
-import { KontaktDialog,InfoDialog } from './footer/footer.component';
 import { PrikazOglasaComponent } from './prikaz-oglasa/prikaz-oglasa.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { EditProfilaComponent } from './edit-profila/edit-profila.component';
+import { PredajaOglasaComponent } from './predaja-oglasa/predaja-oglasa.component';
+import { PretragaOglasaComponent } from './pretraga-oglasa/pretraga-oglasa.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { EditProfilaComponent } from './edit-profila/edit-profila.component';
     KontaktDialog,
     PrikazOglasaComponent,
     SearchbarComponent,
-    EditProfilaComponent
+    EditProfilaComponent,
+    PredajaOglasaComponent,
+    PretragaOglasaComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { EditProfilaComponent } from './edit-profila/edit-profila.component';
     HttpModule,
     MaterialModule,
   ],
-  providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService],
+  providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService, PredajaOglasaService],
   bootstrap: [AppComponent],
   entryComponents: [InfoDialog, KontaktDialog],
 

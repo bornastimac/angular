@@ -10,7 +10,7 @@ export class RegistracijaComponent implements OnInit {
   private tipReg: string = "fizickaOsoba";
   constructor(public snackBar: MdSnackBar, public registracijaService: RegistracijaService) { }
   odabranaStruka: string;
-  kljucneRijeci: string;
+  kljucneRijeci ="";
   odgovor;
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
@@ -55,12 +55,12 @@ export class RegistracijaComponent implements OnInit {
           Password: form.password,
           Email: form.email,
           Profession: form.odabranaStruka,
-          Keywords: form.kljucneRijeci,
+          Keywords: this.kljucneRijeci,
           Fax: form.faks,
           ContactName: form.kontaktIme,
           ContactPhone: form.brTelefona
         }
-      console.log(jsonToSend);
+      console.log(JSON.stringify(jsonToSend));
       this.registracijaService.getRegistracijaPravnaResponse(jsonToSend).subscribe(res => {
         this.odgovor = res;
         console.log(JSON.stringify(this.odgovor));
@@ -74,7 +74,7 @@ export class RegistracijaComponent implements OnInit {
           Email: form.email,
           Profession: form.odabranaStruka,
           Phone: form.brTelefona,
-          Keywords: form.kljucneRijeci
+          Keywords: this.kljucneRijeci
         }
       console.log(jsonToSend);
       this.registracijaService.getRegistracijaFizickaResponse(jsonToSend).subscribe(res => {
