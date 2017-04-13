@@ -1,0 +1,36 @@
+<app-toolbar-dashboard></app-toolbar-dashboard>
+<div class="dashboard">
+  <div class="dashboard-content">
+    <img src="./assets/coffee2.png" class="image-coffee">
+    <div [ngClass]="{'cards': true, 'container-hidden' : hideCards}">
+      <md-card (click)="summon('pretraga')" [ngClass]="{'card': true, 'look-at-me' : lookAtMe1}">
+        <i class="material-icons" style="font-size: 100px; margin: auto; ">search</i>
+        <div> Pretraga oglasa </div>
+      </md-card>
+      <md-card (click)="summon('predaja')" [ngClass]="{'card': true, 'look-at-me' : lookAtMe2}">
+        <i class="material-icons" style="font-size: 100px; margin: auto; ">note_add</i>
+        <div> Predaja oglasa </div>
+      </md-card>
+      <md-card (click)="summon('edit-profile')" [ngClass]="{'card': true, 'look-at-me' : lookAtMe3}">
+        <i class="material-icons" style="font-size: 100px; margin: auto; ">account_circle</i>
+        <div> Moj profil </div>
+      </md-card>
+    </div>
+    <div [ngClass]="{'forms': true, 'container-hidden' : !hideCards}">
+      <div (click)="summon('cards')" class="back-arrow">
+        <i class="material-icons back-arrow-icon">keyboard_backspace</i>
+      </div>
+
+      <app-pretraga-oglasa [ngClass]="{'container-hidden': hidePretragaForm, 'pretraga' : true}"> </app-pretraga-oglasa>
+      <app-predaja-oglasa [ngClass]="{'container-hidden': hidePredajaForm, 'predaja' : true}"> </app-predaja-oglasa>
+      <app-edit-profila [ngClass]="{'container-hidden': hideEditForm, 'edit-profile' : true}"> </app-edit-profila>
+     
+
+      <!--
+      <app-prikaz-oglasa [oglasiArr] ="data"></app-prikaz-oglasa>
+-->
+    </div>
+
+  </div>
+  <app-footer-dashboard class="footer-container"></app-footer-dashboard>
+</div>

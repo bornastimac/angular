@@ -1,0 +1,22 @@
+.three-cards{
+	display: flex;
+	align-items: center;
+    flex-direction: column;
+	flex:1;
+	margin: 1px;
+}
+.cards{
+	display: flex;
+	position:relative; 
+}
+
+@media all and (max-width: 768px){
+	.cards{
+		flex-direction: column;
+	}
+
+	.three-cards{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+}

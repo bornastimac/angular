@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { RegistracijaService } from '../registracija.service';
 @Component({
@@ -12,6 +12,11 @@ export class RegistracijaComponent implements OnInit {
   odabranaStruka: string;
   kljucneRijeci ="";
   odgovor;
+  osobaOption ="Fizicka osoba";
+    @Output() onRegistered = new EventEmitter<string>();
+
+
+  tipOsobe = [{value: 'Fizicka osoba', name: 'Fizicka osoba'},{value: 'Pravna osoba', name: 'Pravna osoba'}];
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -60,10 +65,8 @@ export class RegistracijaComponent implements OnInit {
           ContactName: form.kontaktIme,
           ContactPhone: form.brTelefona
         }
-      console.log(JSON.stringify(jsonToSend));
       this.registracijaService.getRegistracijaPravnaResponse(jsonToSend).subscribe(res => {
         this.odgovor = res;
-        console.log(JSON.stringify(this.odgovor));
       })
     }
     else if (this.tipReg === "fizickaOsoba") {
@@ -76,11 +79,18 @@ export class RegistracijaComponent implements OnInit {
           Phone: form.brTelefona,
           Keywords: this.kljucneRijeci
         }
-      console.log(jsonToSend);
       this.registracijaService.getRegistracijaFizickaResponse(jsonToSend).subscribe(res => {
         this.odgovor = res;
-        console.log(JSON.stringify(this.odgovor));
+        this.afterRegistration();
       })
+    }
+  }
+  afterRegistration()
+  {
+    if(this.odgovor.RegistrationStatus === "registered")
+    {
+        this.onRegistered.emit("registered");
+        console.log(JSON.stringify(this.odgovor));
     }
   }
 }

@@ -50,7 +50,7 @@ export class FooterComponent implements OnInit {
               </md-input-container>
               <br>
               <md-dialog-actions>
-                <button md-button (click) = "posaljiPoruku(ime.value, email.value, poruka.value)" > Pošalji</button>
+                <button md-raised-button color="accent" (click) = "posaljiPoruku(ime.value, email.value, poruka.value)" > Pošalji</button>
               </md-dialog-actions>
      `
 
@@ -93,7 +93,7 @@ export class KontaktDialog {
      `
 })
 export class InfoDialog {
-  private text;
+  public text;
   constructor(public dialogRef: MdDialogRef<InfoDialog>) {
   }
 

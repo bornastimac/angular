@@ -1,6 +1,38 @@
-<div class="searchbar">
-  <input #pretraga type="text" class="pretraga-input" placeholder="Pretraži oglase">
-  <div (click)="pretraziOglase(pretraga.value)" class="icon-div">
-    <i class="material-icons" style="color: #fffff0; margin: auto;">search</i>
+  <div style="display: flex; flex-direction:column; align-items: center;">
+    <div class="searchbar">
+      <input #pretraga type="text" class="pretraga-input" placeholder="Pretraži oglase">
+      <div (click)="pretraziOglase(pretraga.value)" class="icon-div">
+        <i class="material-icons" style="margin:auto;"> search</i>
+      </div>
+    </div>
+
+    <div style="margin-top: 1px; background-color: #ffd740; width: 100%;">
+
+      <a (click)="showNapredno = !showNapredno" style="cursor: pointer; display: flex; align-items: center; padding-left: 1rem;"> Napredno pretraživanje <i class="material-icons" style="margin:auto;"> arrow_drop_down</i>   </a>
+
+      <div *ngIf="showNapredno" style="display: flex; flex-direction:column; background-color: ivory;">
+        <md-select style="padding: 3px; width: 100%; margin: auto; margin-top: 1rem;" placeholder="Struka" [(ngModel)]="selectedStruka">
+          <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
+            {{ struka.viewValue }}
+          </md-option>
+        </md-select>
+        <br>
+        <div style="margin:auto; padding: 3px; ">
+          <md-checkbox [(ngModel)]="fizickaOsoba">Fizička osoba </md-checkbox>
+          <md-checkbox [(ngModel)]="pravnaOsoba">Pravna osoba</md-checkbox>
+          <br>
+        </div>
+        <md-radio-group style="margin:auto; margin-top:1rem; padding: 3px; " [(ngModel)]="tipOglasaZaPretragu">
+          <md-radio-button value="Ponuda">
+            Ponuda
+          </md-radio-button>
+          <md-radio-button value="Potražnja">
+            Potražnja
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+    </div>
   </div>
-</div>
+<!--
+<app-prikaz-oglasa [oglasiArr]="data"></app-prikaz-oglasa>
+-->

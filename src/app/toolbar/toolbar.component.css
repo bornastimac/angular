@@ -5,33 +5,38 @@
 	height: 5rem;
 	position: fixed;	
 	top: 0;
-	background-image: url('./assets/would.jpg');
-	background-size: 100% 100%;
-	z-index: 1;
-}
+	z-index: 10;
+	color: ivory;
 
+	transition: color 1s, background-color 1s;
+}
+.navbar-scrolled{
+	background-image: url("./assets/background-pattern.png");
+	background-repeat: repeat;
+	background-size: 13px;
+	color: black;
+	border-bottom: 1px groove #16161d;
+}
 .headline{
 	font-family: "Calligraffitti", cursive;
 	margin-left: 2rem;
 	margin-top: 2rem;
+	margin-bottom: 2rem;
 	margin-right: auto;
 	letter-spacing: 5px;
-	color: white;
 	font-weight: 700;
 }
-    .navlink{
+.navlink{
 	text-decoration: none;
-	color: white;
 	font-family: "Poiret One", cursive;
 	letter-spacing: 2px;
 	cursor: pointer;
 }
-
-
 .identity-icon{
 	margin-right: 1.1rem;
 	margin-top: 1.1rem;
-	color: white;
+	margin-bottom: 1.1rem;
+	cursor: pointer;
 }
 
 
@@ -49,6 +54,7 @@
 		font-size: 1.8rem;
 		margin-right: 4rem;
 		margin-top: 1.1rem;
+		margin-bottom: 1.1rem;
 	}
 }
 
@@ -61,7 +67,6 @@
 	.identity-container{
     	margin-right: 0;
 		margin-left: auto;
-		color: white;
 		cursor: pointer;
 	}
 	.navlink{

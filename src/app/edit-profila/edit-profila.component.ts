@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../data';
 import { EditProfilaService } from '../edit-profila.service';
+import { MdSnackBar } from '@angular/material';
+
+
 
 @Component({
   selector: 'app-edit-profila',
@@ -11,9 +14,9 @@ export class EditProfilaComponent implements OnInit {
   userInfo;
   editInfo;
   data;
-  private isTvrtka;
-  //odabranaStruka = User.userInfo.Profession;
-  odabranaStruka = "Racunarstvo, informatika i telekomunikacije";
+  public isTvrtka;
+  odabranaStruka;
+ 
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -42,35 +45,22 @@ export class EditProfilaComponent implements OnInit {
     { value: 'Znanost i školstvo', viewValue: 'Znanost i školstvo' },
     { value: 'Ostalo', viewValue: 'Ostalo' }
   ];
-  constructor(public editProfilaService: EditProfilaService) {
-    // this.userInfo = User.userInfo;
-    this.userInfo = {
-      Login: "true",
-      IsCompany: "false",
-      FirstName: "",
-      LastName: "",
-      Email: "stimacborna@gmail.com",
-      Profession: "Racunarstvo, informatika i telekomunikacije",
-      Keywords: "sadsad",
-      City: "",
-      AboutMe: "",
-      Phone: "",
-      CompanyName: "",
-      Fax: "",
-      ContactName: "",
-      ContactPhone: ""
-    }
+  constructor(public editProfilaService: EditProfilaService,private snackbar:MdSnackBar) {
+
+ 
+    this.userInfo = User.userInfo;
+    this.odabranaStruka = User.userInfo.Profession;
     if(this.userInfo.IsCompany === "true")
       this.isTvrtka = true;
     else if(this.userInfo.IsCompany === "false")
       this.isTvrtka = false;
-
+    
 
   }
   onSubmit(ime, prezime, email, kljucneRijeci, grad, oMeni, kontakt, imeTvrtke, faks, kontaktBroj) {
    
       this.editInfo = {
-        UserName: "borna",
+        UserName: User.loggedUser.username,
         FirstName: ime.value,
         LastName: prezime.value,
         Email: email.value,
@@ -89,7 +79,10 @@ export class EditProfilaComponent implements OnInit {
     
       this.editProfilaService.getEditProfilaResponse(this.editInfo).subscribe(res => {
         this.data = res;
-        console.log(JSON.stringify(this.data));
+        if(this.data.UpdateStatus === "success")
+        {
+          this.snackbar.open("Uspješna izmjena profila", 'X', {duration:3000});
+        }
       })
 
     }

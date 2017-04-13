@@ -61,6 +61,20 @@ export interface IUserInfo{
     Fax: string,
     ContactPhone: string
 }
+export interface IpretragaOglasa {
+    UserType : string,
+	Profession : string,
+	AdType : string,
+	SearchTerm : string
+}
+export interface Ioglasi {
+  Ads: Array<Ioglas>;
+}
+
+export interface Ioglas {
+  Title: string;
+  AdText: string;
+}
 export class User{
     public static loggedUser:IUser = {username:"", password:""};
     public static userInfo :IUserInfo;

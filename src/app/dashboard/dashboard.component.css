@@ -1,0 +1,119 @@
+.dashboard{
+    display: flex;
+  	width: 100%;
+    flex-direction: column;}
+
+.dashboard-content{
+	position: relative;
+	background-image: url("./assets/dark_wood.png");
+	min-height: calc(100vh - 3rem - 1px);
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;}
+
+.footer-container{
+	position: relative;
+	margin-top: auto;
+	margin-bottom: 0;}
+
+.cards{
+	position: relative;
+	display: flex;
+	margin: auto;
+	transition: all 1s;}
+
+.forms{
+	position: relative;
+	width: 100%;
+	display: flex;
+	transition: all 1s;}
+
+.card{
+	font-size: 1.5rem;
+	margin: auto;
+	display:flex;
+	width: 15vw;
+	flex-direction: column;
+	align-items: center;
+	background-color: #ffd740;
+	color: #16161d;
+    cursor: pointer;
+	
+	transition: all 0.2s;}
+
+.back-arrow{
+	position: absolute;
+	top: calc(5rem + 1px);
+	left: 1px;
+	height: 5rem;
+	width: 7rem;
+	display: flex;
+	background-color: #ffd740;
+    cursor: pointer;}
+
+.back-arrow-icon{
+	color:#16161d; 
+	margin: auto; 
+	font-size:5rem;}
+
+.look-at-me, .card:hover{
+	transform: scale(1.05);
+	background-color: #ffe64f;}
+
+.pretraga{
+	width: 22rem;
+	margin: auto;
+	margin-top: 11rem;}
+
+.predaja{
+	margin: auto;
+	padding-top: 3rem;
+	width: 30rem;}
+
+.edit-profile{
+	margin: auto;
+	width: 30rem;
+	padding-top: 9.2rem;}
+
+
+/* Mobile */
+@media all and (max-width: 768px){
+ 	.cards{
+		 flex-direction: column;
+		 margin-top: 5rem;}
+
+	.back-arrow{
+		width: 4rem;}
+
+	.back-arrow-icon{
+		color:#16161d; 
+		margin: auto; 
+		font-size:3rem;}
+
+	.card{
+		 width: 90%;
+		 align-items: center;
+		 margin-top: 0.6rem;
+		 margin-bottom: 0.6rem;}
+
+		 	
+	.image-coffee{
+		display: none;
+}
+}
+
+/* Desktop */
+@media all and (min-width: 769px){
+	 .card{
+		 margin-left: 0.5rem;
+		 margin-right: 0.5rem;
+		 height: 12vw;}
+}
+.image-coffee{
+	position: absolute;
+	left: 75vw;
+    top: 40vh;
+	transform: scale(0.75);
+}	
+.container-hidden{
+	display: none;}

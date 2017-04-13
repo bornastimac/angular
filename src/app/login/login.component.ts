@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { MdSnackBar } from '@angular/material';
 
@@ -15,7 +16,7 @@ import { ILogin, User,IUser, IUserInfo } from '../data';
 export class LoginComponent implements OnInit {
   response: IUserInfo;
   user: IUser;
-  constructor(private loginService: LoginService, private snackbar:MdSnackBar) { }
+  constructor(private loginService: LoginService, private snackbar:MdSnackBar, private router:Router) { }
 
 onSubmit(username: string, password: string) {
     this.user =
@@ -33,11 +34,12 @@ onSubmit(username: string, password: string) {
   }
   afterLogin(){
     
-          if(this.response.Login === "true")
+          if(this.response.Login === "true" || this.response.Login === "True")
           {
               this.snackbar.open("Uspješna prijava", 'X', {duration:3000});
               User.loggedUser = this.user;
               User.userInfo = this.response;
+              this.router.navigate(['/dashboard']);
               console.log(JSON.stringify(User.userInfo));
           }
           else

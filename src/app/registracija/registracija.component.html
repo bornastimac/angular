@@ -1,20 +1,13 @@
 <md-card class="registracija-container">
-  <md-card-title>
-    Registracija
-  </md-card-title>
   <md-card-content>
-    <md-radio-group style="display:flex" [(ngModel)]="tipReg">
-      <md-radio-button style="flex:1" value="fizickaOsoba">
-        Fizička osoba
-      </md-radio-button>
-      <md-radio-button style="flex:1" value="pravnaOsoba">
-        Pravna osoba
-      </md-radio-button>
-    </md-radio-group>
+  
     <!-- FORM  -->
     <form class="reg-form" #form="ngForm" (ngSubmit)="onSubmit(form.value)" >
 
-      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+  <md-select placeholder="Tip registracije" [(ngModel)]="osobaOption" [ngModelOptions]="{standalone: true}">
+   <md-option *ngFor="let osoba of tipOsobe" [value]="osoba.value">{{ osoba.name }}</md-option>
+  </md-select>
+      <md-input-container *ngIf="osobaOption === 'Pravna osoba'">
         <input mdInput name="companyName" required placeholder="Ime tvrtke" ngModel>
       </md-input-container>
 
@@ -40,11 +33,11 @@
         </md-option>
       </md-select>
 
-      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+      <md-input-container *ngIf="osobaOption === 'Pravna osoba'">
         <input name="faks" mdInput placeholder="Faks" ngModel>
       </md-input-container>
 
-      <md-input-container *ngIf="tipReg === 'pravnaOsoba'">
+      <md-input-container *ngIf="osobaOption === 'Pravna osoba'">
         <input name="kontaktIme" mdInput placeholder="Kontakt(ime)" ngModel>
       </md-input-container>
       <md-input-container>

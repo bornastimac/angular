@@ -1,0 +1,41 @@
+
+<app-toolbar (onItemClick)="toggleForm($event)"></app-toolbar>
+
+<div class="landing-page">
+    <img src="./assets/notes2.png" class="image-notes">
+    <div class="forms-container">
+    <img src="./assets/coffee2.png" class="image-coffee">
+        <div class="welcome-container">
+            <div class="naslovna-tekst">
+                <label class="naslov">POSLOVNI OGLASI</label><br>
+                <label class="podnaslov"> Dobrodošli na InProfesa.com, <br> portal namjenjen poslovnom <br> oglašavanju!</label>
+            </div>
+            <app-pretraga-oglasa></app-pretraga-oglasa>
+        </div>
+        <div [ngClass]="{'log-reg-container': true, 'log-reg-container-removed' : isLogRegHidden}">
+            <div [ngClass]="{'move-offscreen': isLoginHidden, 'login-container': true}">
+                <app-login></app-login>
+            </div>
+            <div [ngClass]="{'move-offscreen': isRegistracijaHidden, 'register-container': true}">
+                <app-registracija (onRegistered)="toggleForm($event)"></app-registracija>
+            </div>
+        </div>
+    </div>
+    <div class="cards-container">
+        <app-cards></app-cards>
+    </div>
+    <app-footer></app-footer>
+
+</div>
+
+<!--
+    <app-dashboard></app-dashboard>
+    <router-outlet></router-outlet>   
+    <app-toolbar></app-toolbar>
+    <app-predaja-oglasa></app-predaja-oglasa>
+    <app-registracija></app-registracija>
+    <app-login></app-login>
+    <app-edit-profila></app-edit-profila>
+    <app-prikaz-oglasa></app-prikaz-oglasa>    Da bi ova komponenta radila, roditelj mora proslijediti Array<IOglas> [oglasiArr]="data"
+    <app-footer></app-footer>
+-->

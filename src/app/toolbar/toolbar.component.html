@@ -1,17 +1,12 @@
-<nav class="navbar">
+<nav [ngClass]="{'navbar-scrolled': isScrolled, 'navbar': true}">
     <label class="headline"> In Profesa</label>
-    <a *ngIf="!isLogged()" class="navlink"> Login </a>
-    <a *ngIf="!isLogged()" class="navlink"> Registracija </a>
-    <div *ngIf="isLogged()">
-      <label style="color: white;" > {{currentUser.username}} </label>
-      <i class="identity-icon material-icons mobile-hidden" [mdMenuTriggerFor]="menu">person</i>
-    </div>
+    <a (click)="clickEmit('login')" *ngIf="!isLogged()" class="navlink"> Login </a>
+    <a (click)="clickEmit('registracija')" *ngIf="!isLogged()" class="navlink"> Registracija </a>
     <div class="identity-container">
       <i class="identity-icon material-icons" [mdMenuTriggerFor]="menu">person</i>
     </div>
     <md-menu  #menu="mdMenu">
-      <a *ngIf="!isLogged()" md-menu-item > Login </a>
-      <a *ngIf="!isLogged()" md-menu-item > Registracija </a>
-      <a *ngIf="isLogged()" md-menu-item> Logout </a>
+      <a (click)="clickEmit('login')"  md-menu-item > Login </a>
+      <a (click)="clickEmit('registracija')"  md-menu-item > Registracija </a>
     </md-menu>
   </nav>

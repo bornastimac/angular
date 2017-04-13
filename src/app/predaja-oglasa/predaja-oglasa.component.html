@@ -9,12 +9,13 @@
         <input name="naslov" required mdInput placeholder="Naslov oglasa" ngModel>
       </md-input-container>
 
+      <md-select style="font-size:14px;" placeholder="Struka" name="odabranaStruka" ngModel>
+        <md-option style="font-size:14px;" *ngFor="let struka of listaStruka" [value]="struka.value">
+          {{ struka.viewValue }}
+        </md-option>
+      </md-select>
       <md-input-container>
-        <input name="struka" required mdInput placeholder="Struka" ngModel>
-      </md-input-container>
-
-      <md-input-container>
-        <textarea [(ngModel)]="textOglasa" minRows="7" mdInput placeholder="Tekst oglasa" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea [(ngModel)]="textOglasa"  mdInput placeholder="Tekst oglasa" [ngModelOptions]="{standalone: true}"></textarea>
       </md-input-container>
 
 

@@ -1,0 +1,128 @@
+.landing-page{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-image: url("./assets/dark_wood.png");
+}
+.naslov{
+	font-size: 2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+	font-weight: 700;
+}
+
+.podnaslov{
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.naslovna-tekst{
+	color: #fffff0;
+	text-align: left;
+}
+
+.forms-container{
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	overflow: hidden;
+}
+.login-container{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	margin-top: 2rem;
+
+	transition: transform 1s;
+}
+.register-container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	margin-top: 2rem;
+
+	transition: transform 1s;
+}
+.move-offscreen{	
+	transform: translate(100rem, 0rem);
+}
+.cards-container{
+	position: relative;
+	margin: 0;
+	font-size: 3rem;	
+}
+
+/* Mobile */
+@media all and (max-width: 768px){
+.forms-container{
+	margin-top: 5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.log-reg-container{
+	position: relative;
+	width: 90vw;
+	height: 100%;
+	margin: 3rem;
+	order: 2;
+	transition: height 1s;
+}
+.log-reg-container-removed{
+	height: 0;
+	visibility: hidden;
+}
+.welcome-container{
+	position: relative;
+	width: 80vw;
+	margin: auto;
+	order: 1;
+}
+.image-notes{
+	display: none;
+}	
+.image-coffee{
+	display: none;
+}	
+}
+/* Desktop */
+@media all and (min-width: 769px){
+.image-notes{
+	position: absolute;
+	left: -80px;
+	transform: scale(0.8);
+}	
+.image-coffee{
+	position: absolute;
+	left: 67vw;
+    top: 40vh;
+	transform: scale(0.75);
+}	
+.forms-container{
+	display: flex;
+	margin-top: 5rem;
+	flex-direction: row;
+}
+.log-reg-container{
+	position: relative;
+	margin: auto;
+	width: 29vw;	
+	display: flex;
+	transform: translate(0,-5vh);
+}
+.welcome-container{
+	margin: auto;
+	position: relative;
+	margin-left: 26vw;
+	margin-top: 20vh;
+}
+.naslov{
+	font-size: 4rem;
+}
+.podnaslov{
+	font-size: 2.5rem;
+}
+}

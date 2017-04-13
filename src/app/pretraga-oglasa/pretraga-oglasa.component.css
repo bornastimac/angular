@@ -1,0 +1,60 @@
+.oglasi-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  align-items: center;
+}
+
+.searchbar{
+display: flex;
+border: 1px solid black;
+height: 3rem;
+border-radius: 2px;
+width: 100%;
+}
+
+.pretraga-input{
+ flex: 3;
+ border: none;
+ font-family:'Roboto', 'Helveticaneue', Arial, sans-serif;
+ font-size: 1.5rem; 
+ padding-left: 5%;
+ width: 100%;
+ color: #000;
+}
+::-webkit-input-placeholder { 
+ font-family:'Roboto', 'Helveticaneue', Arial, sans-serif;
+ font-style: italic;
+ font-size: 1.2rem;
+ color: #C6C6C6;
+ padding-left: 0.2rem; 
+}
+:-moz-placeholder { 
+font-family:'Roboto', 'Helveticaneue', Arial, sans-serif;
+ font-style: italic;
+ font-size: 1.2rem;
+ color: #C6C6C6;
+ padding-left: 0.2rem;
+}
+::-moz-placeholder { 
+  font-family:'Roboto', 'Helveticaneue', Arial, sans-serif;
+  font-style: italic;
+ font-size: 1.5rem;
+ color: #C6C6C6;
+ padding-left: 0.5rem; 
+}
+:-ms-input-placeholder { 
+font-family:'Roboto', 'Helveticaneue', Arial, sans-serif;
+ font-style: italic;
+ font-size: 1.2rem;
+ color: #C6C6C6;
+ padding-left: 0.2rem;
+}
+
+.icon-div{
+flex: 1;
+display:flex;
+cursor: pointer;
+border-left: 1px solid black;
+background-color: #ffd740
+}
