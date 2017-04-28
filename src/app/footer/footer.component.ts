@@ -83,8 +83,6 @@ export class KontaktDialog {
 }
 
 
-
-
 @Component({
   template: ` <i (click)="dialogRef.close()" class="material-icons" style="float: right; cursor: pointer;">close</i>
               <md-dialog-content>
@@ -100,5 +98,4 @@ export class InfoDialog {
   setText(tekst: string) {
     this.text = tekst;
   }
-
 }

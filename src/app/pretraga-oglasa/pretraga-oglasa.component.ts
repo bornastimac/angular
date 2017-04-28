@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {PretragaOglasaService} from '../pretraga.service';
-import { Ioglasi,Ioglas } from '../data';
+import { PretragaOglasaService } from '../pretraga.service';
+import { Ioglasi, Ioglas } from '../data';
+import {MdDialog, MdDialogRef , MdDialogConfig} from '@angular/material';
+import {PrikazProfilaService} from '../prikaz-profila.service';
+
 @Component({
   selector: 'app-pretraga-oglasa',
   templateUrl: './pretraga-oglasa.component.html',
@@ -8,15 +11,16 @@ import { Ioglasi,Ioglas } from '../data';
 })
 export class PretragaOglasaComponent implements OnInit {
   showNapredno = false;
-selectedStruka: string;
-tipOglasaZaPretragu: string;
-fizickaOsoba: boolean;
-pravnaOsoba: boolean;
-data:Ioglasi ;
-oglasi = new Array<Ioglas>();
+  selectedStruka: string;
+  tipOglasaZaPretragu: string;
+  fizickaOsoba: boolean;
+  pravnaOsoba: boolean;
+  data: Ioglasi;
+  waiting = false;
+  public oglasi = new Array<Ioglas>();
 
-  constructor(private pretragaOglasaService: PretragaOglasaService) { }
-listaStruka = [
+  constructor(private pretragaOglasaService: PretragaOglasaService, public dialog: MdDialog) { }
+  listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
     { value: 'Pravo', viewValue: 'Pravo' },
@@ -47,7 +51,8 @@ listaStruka = [
   ngOnInit() {
   }
 
- pretraziOglase(pojamZaPretragu:string) {
+  pretraziOglase(pojamZaPretragu: string) {
+    this.waiting = true;
     let usertype = "Both";
     if (this.fizickaOsoba && this.pravnaOsoba)
       usertype = "Both";
@@ -57,7 +62,7 @@ listaStruka = [
       usertype = "Company";
     else
       usertype = "Both";
-      
+
     let foo;
     if (this.tipOglasaZaPretragu === "Potražnja")
       foo = "Demand";
@@ -66,7 +71,7 @@ listaStruka = [
 
     if (this.selectedStruka == null)
       this.selectedStruka = "";
-    
+
     let formToSend =
       {
         UserType: usertype,
@@ -75,21 +80,159 @@ listaStruka = [
         SearchTerm: pojamZaPretragu
       }
 
-      console.log(JSON.stringify(formToSend));
-      this.pretragaOglasaService.getPretragaOglasaResponse(formToSend)
-        .subscribe(res => {
-          this.data = res;
-          console.log(JSON.stringify(this.data));
-          this.oglasi =[];
-          if(this.data.Ads === null)
-          {
-            this.oglasi.push({ Title: "Rezultati pretrage", AdText: "Nema oglasa" });
-          }
-          else
-          {
-           this.data.Ads.forEach(element => { this.oglasi.push(element); });
-          }
-        });
+    this.pretragaOglasaService.getPretragaOglasaResponse(formToSend)
+      .subscribe(res => {
+        this.data = res;
+        this.waiting = false;
+        this.oglasi = [];
+        if (this.data.Ads === null) {
+          this.oglasi.push({ Title: "Rezultati pretrage", AdText: "Nema oglasa", DateCreated: "", Viewed: "", User: "" });
+        }
+        else {
+          this.data.Ads.forEach(element => { this.oglasi.push(element);  });
+        }
+      });
   }
 
+  pogledajProfil(id, user) {
+    let jsonToSend = { Id: id };
+    this.pretragaOglasaService.getPogledajProfilResponse(jsonToSend).subscribe(res => {
+      console.log(res);
+    })
+
+    //prikaz profila
+let dataForDialog = new MdDialogConfig();
+dataForDialog.data = user;
+let dialogRef = this.dialog.open(PrikazProfilaDialog, dataForDialog);
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+//prikaz oglasa
+pogledajOglas(oglas)
+{
+    let dataForDialog = new MdDialogConfig();
+  dataForDialog.data = oglas;
+let dialogRef = this.dialog.open(OglasDialog, dataForDialog);
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  }
+
+  
+  
+
+  
+
+@Component({
+  template: `
+   <i (click)="dialogRef.close()" class="material-icons" style="float: right; cursor: pointer;">close</i>
+  
+  <h1>
+    Pregled profila
+  </h1>
+  <md-dialog-content >
+      <md-input-container>
+        <input mdInput placeholder="Ime" value= {{userInfo.FirstName}} disabled style="color: black">
+      </md-input-container>
+  
+      <md-input-container>
+        <input mdInput placeholder="Prezime" value= {{userInfo.LastName}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  placeholder="Email" value= {{userInfo.Email}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  placeholder="Struka" value= {{userInfo.Profession}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <textarea  mdInput placeholder="Ključne riječi(odvojene zarezom)" disabled style="color: black" > {{userInfo.Keywords}}</textarea>
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput  placeholder="Grad" value= {{userInfo.City}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <textarea mdInput  placeholder="O meni" disabled style="color: black" > {{userInfo.AboutMe}} </textarea>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  placeholder="Kontakt(broj telefona)" value= {{userInfo.Phone}}  disabled style="color: black">
+      </md-input-container>
+      <div [hidden]="!isTvrtka">
+        <md-input-container>
+          <input mdInput placeholder="Ime tvrtke" value= {{userInfo.CompanyName}} disabled style="color: black">
+        </md-input-container>
+        <md-input-container >
+          <input mdInput  placeholder="Faks" value= {{userInfo.Fax}} disabled style="color: black">
+        </md-input-container>
+        <md-input-container >
+          <input mdInput  placeholder="Kontakt(broj telefona)" value= {{userInfo.ContactPhone}} disabled style="color: black">
+        </md-input-container>
+      </div>
+  </md-dialog-content>
+`,
+})
+export class PrikazProfilaDialog {
+  private userInfo={ Login: "",
+      IsCompany: "",
+      FirstName: "",
+      LastName: "",
+      Email:  "",
+      Profession:  "",
+      Keywords:  "",
+      City:  "",
+      AboutMe:  "",
+      Phone:  "",
+      CompanyName:  "",
+      Fax:  "",
+      ContactPhone:  ""
+  }
+  constructor(public dialogRef: MdDialogRef<PrikazProfilaDialog>, private prikazProfilaService: PrikazProfilaService) {
+   this.prikazProfilaService.getProfilResponse(this.dialogRef.config.data).subscribe(res => 
+      {
+        console.log(res);
+        this.userInfo = res;
+      });
+  }
+}
+
+@Component({
+
+  template: `
+   <i (click)="dialogRef.close()" class="material-icons" style="float: right; cursor: pointer;">close</i>
+
+      <h1>{{oglas.Title}}</h1>
+      <md-dialog-content>
+      {{oglas.AdText}}
+      </md-dialog-content>
+      <div style="display: flex; flex-direction:column;">
+        <div (click)="pogledajProfil(oglas.Id, oglas.User)" style="display: flex;">
+          <i  class="material-icons">person</i> {{oglas.User}}
+        </div>
+        <div style="display: flex; ">        
+          <i class="material-icons">remove_red_eye</i> <label>{{oglas.Viewed}} </label>
+        </div>
+        <div style="display: flex;">        
+          <i class="material-icons">date_range</i>     {{oglas.DateCreated}}
+        </div> 
+       <label>
+            Javite se na oglas na:
+       </label>
+       <md-input-container>
+        <input  mdInput type="text" value="{{user?.Email}}" >
+      </md-input-container>
+      </div>
+
+
+  `
+})
+export class OglasDialog {
+  oglas;
+  user ;
+  constructor(public dialogRef: MdDialogRef<OglasDialog>, private prikazProfilaService: PrikazProfilaService) {
+    this.oglas = this.dialogRef.config.data;
+   this.prikazProfilaService.getProfilResponse(this.dialogRef.config.data.User).subscribe(res => 
+      {
+        this.user = res;
+      });
+  }
 }

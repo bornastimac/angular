@@ -74,6 +74,9 @@ export interface Ioglasi {
 export interface Ioglas {
   Title: string;
   AdText: string;
+  User: string;
+  DateCreated: string;
+  Viewed: string;
 }
 export class User{
     public static loggedUser:IUser = {username:"", password:""};

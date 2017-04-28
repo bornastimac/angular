@@ -12,8 +12,11 @@ import { RegistracijaService } from './registracija.service';
 import { EditProfilaService } from './edit-profila.service';
 import { PredajaOglasaService } from './predaja-oglasa.service';
 import { PretragaOglasaService } from './pretraga.service'; 
+import { PrikazProfilaService } from './prikaz-profila.service';
+
 //dialogs
 import { KontaktDialog,InfoDialog } from './footer/footer.component';
+import { PrikazProfilaDialog, OglasDialog } from './pretraga-oglasa/pretraga-oglasa.component';
 
 //components
 import { AppComponent } from './app.component';
@@ -30,9 +33,10 @@ import { CardsComponent } from './cards/cards.component';
 import { LandingComponent } from './landing/landing.component';
 import { ToolbarDashboardComponent } from './toolbar-dashboard/toolbar-dashboard.component';
 import { FooterDashboardComponent } from './footer-dashboard/footer-dashboard.component';
+import { PrikazProfilaComponent } from './prikaz-profila/prikaz-profila.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: LandingComponent },
+  {path: 'home', component: LandingComponent },
   {path: 'dashboard', component: DashboardComponent},
  
   { path: '',
@@ -50,6 +54,8 @@ const appRoutes: Routes = [
     FooterComponent,
     InfoDialog,
     KontaktDialog,
+    PrikazProfilaDialog,
+    OglasDialog,
     SearchbarComponent,
     EditProfilaComponent,
     PredajaOglasaComponent,
@@ -58,7 +64,8 @@ const appRoutes: Routes = [
     CardsComponent,
     LandingComponent,
     ToolbarDashboardComponent,
-    FooterDashboardComponent
+    FooterDashboardComponent,
+    PrikazProfilaComponent
   ],
   imports: [
     BrowserModule,
@@ -67,9 +74,9 @@ const appRoutes: Routes = [
     MaterialModule, 
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService, PredajaOglasaService, PretragaOglasaService],
+  providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService, PredajaOglasaService, PretragaOglasaService, PrikazProfilaService],
   bootstrap: [AppComponent],
-  entryComponents: [InfoDialog, KontaktDialog],
+  entryComponents: [InfoDialog, KontaktDialog, PrikazProfilaDialog,OglasDialog],
 
 })
 export class AppModule { }

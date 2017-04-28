@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User, IUser } from '../data';
 import { AppComponent } from '../app.component';
+import { MdSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -13,7 +15,7 @@ export class ToolbarComponent implements OnInit {
   @Output() onItemClick = new EventEmitter<string>();
   currentUser: IUser;
   isScrolled = false;
-  constructor() {
+  constructor(private snackbar:MdSnackBar) {
   }
 
   ngOnInit() {
@@ -33,12 +35,36 @@ export class ToolbarComponent implements OnInit {
       return true;
     }
     else
+    {
       return false;
+    }
   }
 
   clickEmit(itemClicked: string) {
     this.onItemClick.emit(itemClicked);
   }
 
+logout()
+{
+   User.loggedUser.username = "";
+    User.loggedUser.password = "";
+    User.userInfo = {
+      Login: "",
+      IsCompany: "",
+      FirstName: "",
+      LastName: "",
+      Email:  "",
+      Profession:  "",
+      Keywords:  "",
+      City:  "",
+      AboutMe:  "",
+      Phone:  "",
+      CompanyName:  "",
+      Fax:  "",
+      ContactPhone:  ""
+    }
+     this.snackbar.open("Uspješna odjava", 'X', {duration:5000});
+
+}
 
 }

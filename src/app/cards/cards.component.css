@@ -9,6 +9,10 @@
 	display: flex;
 	position:relative; 
 }
+.icon{
+	font-size: 10rem;
+	color: #999999;
+}
 
 @media all and (max-width: 768px){
 	.cards{

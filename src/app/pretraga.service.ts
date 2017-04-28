@@ -7,10 +7,9 @@ import { Strings } from './strings';
 
 @Injectable()
 export class PretragaOglasaService {
-//private pretragaUrl = "http://jimsrv.no-ip.info/InProfesa2/api/PretragaOglasa";
 
 private pretragaUrl ="http://" + Strings.domainAndPort + "/api/AdSearch";
-
+private pogledajUrl = "http://" + Strings.domainAndPort + "/api/AdUpdateView";
  constructor(private http: Http) { }
 
   getPretragaOglasaResponse(forBody:IpretragaOglasa): Observable<Ioglasi>
@@ -20,5 +19,14 @@ private pretragaUrl ="http://" + Strings.domainAndPort + "/api/AdSearch";
      let options = new RequestOptions({ headers: headers });
      let response : Observable<Response>  = this.http.post(this.pretragaUrl, body, options);
     return response.map(res => res.json());
-    }
+}
+
+getPogledajProfilResponse(forBody):Observable<any>
+{
+    let body = forBody;
+     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+     let options = new RequestOptions({ headers: headers });
+     let response : Observable<Response>  = this.http.post(this.pogledajUrl, body, options);
+    return response.map(res=> res.json());
+}
 }

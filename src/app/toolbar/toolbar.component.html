@@ -1,12 +1,15 @@
 <nav [ngClass]="{'navbar-scrolled': isScrolled, 'navbar': true}">
-    <label class="headline"> In Profesa</label>
-    <a (click)="clickEmit('login')" *ngIf="!isLogged()" class="navlink"> Login </a>
-    <a (click)="clickEmit('registracija')" *ngIf="!isLogged()" class="navlink"> Registracija </a>
+  <label class="headline"> InProfesa</label>
+  <div>
+    <a (click)="clickEmit('login')"  class="navlink"> Login </a>
+    <a (click)="clickEmit('registracija')"  class="navlink"> Registracija </a>
     <div class="identity-container">
       <i class="identity-icon material-icons" [mdMenuTriggerFor]="menu">person</i>
     </div>
-    <md-menu  #menu="mdMenu">
-      <a (click)="clickEmit('login')"  md-menu-item > Login </a>
-      <a (click)="clickEmit('registracija')"  md-menu-item > Registracija </a>
+    <md-menu #menu="mdMenu">
+      <a (click)="clickEmit('login')" md-menu-item> Login </a>
+      <a (click)="clickEmit('registracija')" md-menu-item> Registracija </a>
     </md-menu>
-  </nav>
+  </div>
+
+</nav>

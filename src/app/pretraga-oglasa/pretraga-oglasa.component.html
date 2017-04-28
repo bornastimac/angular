@@ -37,10 +37,26 @@
   </div>
   <!-- SEARCH BAR -->
 
+  <div *ngIf="waiting" class="loader"></div>
+
   <!--PRIKAZ OGLASA-->
  <md-card class="oglasi-container" *ngFor="let oglas of oglasi">
       <md-card-title >{{oglas.Title}}</md-card-title>
       <md-card-content>
       {{oglas.AdText}}
       </md-card-content>
+      <div style="display: flex; flex-direction:column;">
+        <div (click)="pogledajProfil(oglas.Id, oglas.User)" style="display: flex;">
+          <i  class="material-icons">person</i> {{oglas.User}}
+        </div>
+        <div style="display: flex; ">        
+          <i class="material-icons">remove_red_eye</i> <label>{{oglas.Viewed}} </label>
+        </div>
+        <div style="display: flex;">        
+          <i class="material-icons">date_range</i>     {{oglas.DateCreated}}
+        </div> 
+       <label (click)="pogledajOglas(oglas)">
+             Pogledaj oglas
+       </label>
+      </div>
 </md-card>

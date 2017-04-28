@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { User } from '../data';
 import { EditProfilaService } from '../edit-profila.service';
 import { MdSnackBar } from '@angular/material';
@@ -11,11 +11,13 @@ import { MdSnackBar } from '@angular/material';
   styleUrls: ['./edit-profila.component.css']
 })
 export class EditProfilaComponent implements OnInit {
+  @Output()
   userInfo;
   editInfo;
   data;
   public isTvrtka;
   odabranaStruka;
+  editPrezime= false;
  
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
@@ -54,6 +56,7 @@ export class EditProfilaComponent implements OnInit {
       this.isTvrtka = true;
     else if(this.userInfo.IsCompany === "false")
       this.isTvrtka = false;
+
     
 
   }
@@ -86,7 +89,10 @@ export class EditProfilaComponent implements OnInit {
       })
 
     }
+
+  
     ngOnInit() {
+     
     }
 
   }

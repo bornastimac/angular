@@ -1,0 +1,48 @@
+<md-card>
+  <md-card-title>
+    Pregled profila
+  </md-card-title>
+  <md-card-content >
+      <md-input-container>
+        <input mdInput placeholder="Ime" value= {{userInfo.FirstName}} disabled style="color: black">
+      </md-input-container>
+  
+      <md-input-container>
+        <input mdInput placeholder="Prezime" value= {{userInfo.LastName}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  placeholder="Email" value= {{userInfo.Email}} disabled style="color: black">
+      </md-input-container>
+
+      <md-select  style="font-size:14px;" placeholder="Struka" [(ngModel)]="odabranaStruka" [ngModelOptions]="{standalone: true}" disabled >
+        <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
+          {{ struka.viewValue }}
+        </md-option>
+      </md-select>
+      
+      <md-input-container>
+        <textarea  mdInput placeholder="Ključne riječi(odvojene zarezom)" disabled style="color: black" > {{userInfo.Keywords}}</textarea>
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput  placeholder="Grad" value= {{userInfo.City}} disabled style="color: black">
+      </md-input-container>
+      <md-input-container>
+        <textarea mdInput  placeholder="O meni" disabled style="color: black" > {{userInfo.AboutMe}} </textarea>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  placeholder="Kontakt(broj telefona)" value= {{userInfo.Phone}}  disabled style="color: black">
+      </md-input-container>
+      <div [hidden]="!isTvrtka">
+        <md-input-container>
+          <input mdInput placeholder="Ime tvrtke" value= {{userInfo.CompanyName}} disabled style="color: black">
+        </md-input-container>
+        <md-input-container >
+          <input mdInput  placeholder="Faks" value= {{userInfo.Fax}} disabled style="color: black">
+        </md-input-container>
+        <md-input-container >
+          <input mdInput  placeholder="Kontakt(broj telefona)" value= {{userInfo.ContactPhone}} disabled style="color: black">
+        </md-input-container>
+      </div>
+  </md-card-content>
+</md-card>

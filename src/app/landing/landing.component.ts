@@ -17,6 +17,7 @@ constructor() { }
     if (evt === "login") {
       this.isLoginHidden = false;
       this.isRegistracijaHidden = true;
+      
     }
     else if (evt === "registracija") {
       this.isRegistracijaHidden = false;

@@ -1,10 +1,11 @@
 <nav class="navbar">
-    <label class="headline"> In Profesa</label>
+    <label (click)="goHome()" class="headline"> InProfesa</label>
     <div class="identity-container" [mdMenuTriggerFor]="menu">
       <div class="username">{{user.username}}</div>     
       <i class="identity-icon material-icons" >person</i>
     </div>
     <md-menu  #menu="mdMenu">
       <a (click)="logout()"md-menu-item > Logout </a>
+      <a (click) ="urediProfil()" md-menu-item> Moj Profil </a>
     </md-menu>
   </nav>
