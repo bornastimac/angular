@@ -63,7 +63,6 @@ export class KontaktDialog {
   }
   posaljiPoruku(ime, email, poruka) {
     this.kontakt = { Name: ime, Email: email, Text: poruka }
-    console.log(this.kontakt);
     this.kontaktService.getKontaktResponse(this.kontakt).
       subscribe(res => {
         this.odgovor = res;

@@ -73,11 +73,9 @@ listaStruka = [
         SearchTerm: pojamZaPretragu
       }
 
-      console.log(JSON.stringify(formToSend));
       this.pretragaOglasaService.getPretragaOglasaResponse(formToSend)
         .subscribe(res => {
           this.data = res;
-          console.log(JSON.stringify(this.data));
         });
   }
 }

@@ -11,7 +11,7 @@
       <a (click)="showNapredno = !showNapredno" style="cursor: pointer; display: flex; align-items: center; padding-left: 1rem;"> Napredno pretraživanje <i class="material-icons" style="margin:auto;"> arrow_drop_down</i>   </a>
 
       <div *ngIf="showNapredno" style="display: flex; flex-direction:column; background-color: ivory;">
-        <md-select style="padding: 3px; width: 100%; margin: auto; margin-top: 1rem;" placeholder="Struka" [(ngModel)]="selectedStruka">
+        <md-select style="padding: 3px; width: 100%; margin: auto; margin-top: 1rem; padding: 3px;" placeholder="Struka" [(ngModel)]="selectedStruka">
           <md-option *ngFor="let struka of listaStruka" [value]="struka.value">
             {{ struka.viewValue }}
           </md-option>

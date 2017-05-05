@@ -31,7 +31,6 @@ onSubmit(username: string, password: string) {
       .subscribe(res => 
       {
         this.response = res;
-        console.log(res);
         this.afterLogin();
       });
   }

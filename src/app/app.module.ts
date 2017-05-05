@@ -17,7 +17,7 @@ import { PrikazProfilaService } from './prikaz-profila.service';
 //dialogs
 import { KontaktDialog,InfoDialog } from './footer/footer.component';
 import { PrikazProfilaDialog, OglasDialog } from './pretraga-oglasa/pretraga-oglasa.component';
-
+import { EditDialog, EditStrukaDialog } from './edit-profila/edit-profila.component';
 //components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -33,7 +33,6 @@ import { CardsComponent } from './cards/cards.component';
 import { LandingComponent } from './landing/landing.component';
 import { ToolbarDashboardComponent } from './toolbar-dashboard/toolbar-dashboard.component';
 import { FooterDashboardComponent } from './footer-dashboard/footer-dashboard.component';
-import { PrikazProfilaComponent } from './prikaz-profila/prikaz-profila.component';
 
 const appRoutes: Routes = [
   {path: 'home', component: LandingComponent },
@@ -56,6 +55,7 @@ const appRoutes: Routes = [
     KontaktDialog,
     PrikazProfilaDialog,
     OglasDialog,
+    EditStrukaDialog,
     SearchbarComponent,
     EditProfilaComponent,
     PredajaOglasaComponent,
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     LandingComponent,
     ToolbarDashboardComponent,
     FooterDashboardComponent,
-    PrikazProfilaComponent
+    EditDialog
   ],
   imports: [
     BrowserModule,
@@ -76,7 +76,7 @@ const appRoutes: Routes = [
   ],
   providers: [LoginService, KontaktService,RegistracijaService, EditProfilaService, PredajaOglasaService, PretragaOglasaService, PrikazProfilaService],
   bootstrap: [AppComponent],
-  entryComponents: [InfoDialog, KontaktDialog, PrikazProfilaDialog,OglasDialog],
+  entryComponents: [InfoDialog, KontaktDialog, PrikazProfilaDialog,OglasDialog, EditDialog, EditStrukaDialog],
 
 })
 export class AppModule { }

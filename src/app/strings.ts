@@ -60,6 +60,6 @@ InProfesa.com ne odgovara za točnost i istinitost podataka koje unose korisnici
 Uvjeti korištenja podložni su promjeni bez prethodne najave. Usluge objave oglasa na portalu inprofesa.com se ne naplaćuju. Sve korisničke sugestije su dobrodošle i možete ih slati na adresu:contact@inprofesa.com
   `;
   
-  public static domainAndPort = "192.168.1.134:1105";
-  //public static domainAndPort = "jimsrv.no-ip.info/InProfesa2";
+  //public static domainAndPort = "192.168.1.134:1105";
+  public static domainAndPort = "jimsrv.no-ip.info/InProfesa2";
 }

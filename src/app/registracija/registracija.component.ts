@@ -13,6 +13,7 @@ export class RegistracijaComponent implements OnInit {
   kljucneRijeci ="";
   odgovor;
   osobaOption ="Fizicka osoba";
+  spinnerShown = false;
     @Output() onRegistered = new EventEmitter<string>();
 
 
@@ -79,6 +80,7 @@ export class RegistracijaComponent implements OnInit {
           Phone: form.brTelefona,
           Keywords: this.kljucneRijeci
         }
+        this.spinnerShown = true;
       this.registracijaService.getRegistracijaFizickaResponse(jsonToSend).subscribe(res => {
         this.odgovor = res;
         this.afterRegistration();
@@ -90,7 +92,7 @@ export class RegistracijaComponent implements OnInit {
     if(this.odgovor.RegistrationStatus === "registered")
     {
         this.onRegistered.emit("registered");
-        console.log(JSON.stringify(this.odgovor));
+        this.spinnerShown = false;
     }
   }
 }

@@ -7,20 +7,20 @@
       <md-input-container>
         <input mdInput #ime placeholder="Ime" value= {{userInfo.FirstName}} disabled style="color: black">
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Ime')"class="material-icons edit-icon">mode_edit</i>
   </div>
   
   <div class="edit-field">
       <md-input-container>
         <input mdInput #prezime placeholder="Prezime" value= {{userInfo.LastName}} [attr.disabled]="editPrezime" style="color: black">
       </md-input-container>
-      <i (click)="editPrezime = !editPrezime" class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Prezime')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
       <md-input-container>
         <input mdInput #email placeholder="Email" value= {{userInfo.Email}} disabled style="color: black">
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Email')" class="material-icons edit-icon">mode_edit</i>
   </div>
 
   <div class="edit-field">
@@ -29,53 +29,56 @@
           {{ struka.viewValue }}
         </md-option>
       </md-select>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Struka')" class="material-icons edit-icon">mode_edit</i>
   </div>
       
   <div class="edit-field">
       <md-input-container>
         <textarea #kljucneRijeci mdInput placeholder="Ključne riječi(odvojene zarezom)" disabled style="color: black" > {{userInfo.Keywords}}</textarea>
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Kljucne rijeci')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
       <md-input-container>
         <input mdInput #grad placeholder="Grad" value= {{userInfo.City}} disabled style="color: black">
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i  (click)="editBox(userInfo, 'Grad')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
       <md-input-container>
         <textarea mdInput #oMeni placeholder="O meni" disabled style="color: black" > {{userInfo.AboutMe}} </textarea>
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'O meni')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
       <md-input-container>
         <input mdInput #kontakt placeholder="Kontakt(broj telefona)" value= {{userInfo.Phone}}  disabled style="color: black">
       </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>      
+      <i (click)="editBox(userInfo, 'Kontakt(brojtelefona)')" class="material-icons edit-icon">mode_edit</i>      
   </div>
       <div [hidden]="!isTvrtka">
   <div class="edit-field">
         <md-input-container>
           <input mdInput #imeTvrtke placeholder="Ime tvrtke" value= {{userInfo.CompanyName}} disabled style="color: black">
         </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Ime tvrtke')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
         <md-input-container >
           <input mdInput #faks placeholder="Faks" value= {{userInfo.Fax}} disabled style="color: black">
         </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Faks')" class="material-icons edit-icon">mode_edit</i>
   </div>
   <div class="edit-field">
         <md-input-container >
           <input mdInput #kontaktBroj placeholder="Kontakt(broj telefona)" value= {{userInfo.ContactPhone}} disabled style="color: black">
         </md-input-container>
-      <i class="material-icons edit-icon">mode_edit</i>
+      <i (click)="editBox(userInfo, 'Kontakt(brojtelefona)')" class="material-icons edit-icon">mode_edit</i>
   </div>
       </div>
         <button md-raised-button (click)="onSubmit(ime, prezime, email, kljucneRijeci, grad, oMeni, kontakt, imeTvrtke, faks, kontaktBroj)" color="accent"> Spremi promjene </button>
   </md-card-content>
+
+      <div *ngIf="spinnerShown" class="loader"></div>
+
 </md-card>

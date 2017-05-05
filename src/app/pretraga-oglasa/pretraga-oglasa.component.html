@@ -45,9 +45,9 @@
       <md-card-content>
       {{oglas.AdText}}
       </md-card-content>
-      <div style="display: flex; flex-direction:column;">
-        <div (click)="pogledajProfil(oglas.Id, oglas.User)" style="display: flex;">
-          <i  class="material-icons">person</i> {{oglas.User}}
+      <div  *ngIf="oglas.AdText !=  'Nema oglasa'" style="display: flex; flex-direction:column;">
+        <div (click)="pogledajProfil(oglas.Id, oglas.User)" style="display: flex; cursor:pointer;">
+          <i  class="material-icons" >person</i> {{oglas.User}}
         </div>
         <div style="display: flex; ">        
           <i class="material-icons">remove_red_eye</i> <label>{{oglas.Viewed}} </label>
@@ -55,8 +55,8 @@
         <div style="display: flex;">        
           <i class="material-icons">date_range</i>     {{oglas.DateCreated}}
         </div> 
-       <label (click)="pogledajOglas(oglas)">
+       <a style="cursor: pointer" (click)="pogledajOglas(oglas)">
              Pogledaj oglas
-       </label>
+       </a>
       </div>
 </md-card>

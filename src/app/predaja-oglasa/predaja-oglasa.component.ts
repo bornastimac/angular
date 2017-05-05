@@ -11,6 +11,8 @@ import { PredajaOglasaService } from '../predaja-oglasa.service';
 })
 export class PredajaOglasaComponent implements OnInit {
   public textOglasa ="";
+    spinnerShown = false;
+
    listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -55,7 +57,7 @@ export class PredajaOglasaComponent implements OnInit {
           AdType: this.radio
         }
 
-console.log(JSON.stringify(this.oglas));
+this.spinnerShown = true;
       this.pretragaOglasaService.getPredajaOglasaResponse(this.oglas)
         .subscribe(res => {
           this.data = res;
@@ -65,7 +67,7 @@ console.log(JSON.stringify(this.oglas));
           else
             this.snackbar.open("Oglas nije predan", 'X', { duration: 5000 });
         });
-    
+    this.spinnerShown = false;
   }
   ngOnInit() {
   }

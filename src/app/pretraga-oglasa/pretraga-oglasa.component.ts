@@ -3,6 +3,9 @@ import { PretragaOglasaService } from '../pretraga.service';
 import { Ioglasi, Ioglas } from '../data';
 import {MdDialog, MdDialogRef , MdDialogConfig} from '@angular/material';
 import {PrikazProfilaService} from '../prikaz-profila.service';
+import { User } from '../data';
+import { MdSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-pretraga-oglasa',
@@ -19,7 +22,7 @@ export class PretragaOglasaComponent implements OnInit {
   waiting = false;
   public oglasi = new Array<Ioglas>();
 
-  constructor(private pretragaOglasaService: PretragaOglasaService, public dialog: MdDialog) { }
+  constructor(private pretragaOglasaService: PretragaOglasaService, public dialog: MdDialog,private snackbar:MdSnackBar) { }
   listaStruka = [
     { value: 'Racunarstvo, informatika i telekomunikacije', viewValue: 'IT' },
     { value: 'Administrativne djelatnosti', viewValue: 'Administracija' },
@@ -95,9 +98,9 @@ export class PretragaOglasaComponent implements OnInit {
   }
 
   pogledajProfil(id, user) {
+    if(User.loggedUser.username != ""){
     let jsonToSend = { Id: id };
     this.pretragaOglasaService.getPogledajProfilResponse(jsonToSend).subscribe(res => {
-      console.log(res);
     })
 
     //prikaz profila
@@ -105,23 +108,27 @@ let dataForDialog = new MdDialogConfig();
 dataForDialog.data = user;
 let dialogRef = this.dialog.open(PrikazProfilaDialog, dataForDialog);
     dialogRef.afterClosed().subscribe(result => {
-    });
+    });}
+    else{
+        this.snackbar.open("Prijavite se kako biste vidjeli detalje profila", 'X', {duration:3000});
+    }
   }
 //prikaz oglasa
 pogledajOglas(oglas)
 {
+  if(User.loggedUser.username != "")
+  {
     let dataForDialog = new MdDialogConfig();
   dataForDialog.data = oglas;
 let dialogRef = this.dialog.open(OglasDialog, dataForDialog);
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+  else{
+        this.snackbar.open("Prijavite se kako biste vidjeli oglas i kontakt", 'X', {duration:3000});
   }
-
-  
-  
-
-  
+}
+  }
 
 @Component({
   template: `
@@ -130,7 +137,7 @@ let dialogRef = this.dialog.open(OglasDialog, dataForDialog);
   <h1>
     Pregled profila
   </h1>
-  <md-dialog-content >
+  <md-dialog-content style="display:flex; flex-direction:column">
       <md-input-container>
         <input mdInput placeholder="Ime" value= {{userInfo.FirstName}} disabled style="color: black">
       </md-input-container>
@@ -157,7 +164,7 @@ let dialogRef = this.dialog.open(OglasDialog, dataForDialog);
       <md-input-container>
         <input mdInput  placeholder="Kontakt(broj telefona)" value= {{userInfo.Phone}}  disabled style="color: black">
       </md-input-container>
-      <div [hidden]="!isTvrtka">
+      <div [hidden]="!userInfo.IsCompany">
         <md-input-container>
           <input mdInput placeholder="Ime tvrtke" value= {{userInfo.CompanyName}} disabled style="color: black">
         </md-input-container>
@@ -172,7 +179,7 @@ let dialogRef = this.dialog.open(OglasDialog, dataForDialog);
 `,
 })
 export class PrikazProfilaDialog {
-  private userInfo={ Login: "",
+  public userInfo={ Login: "",
       IsCompany: "",
       FirstName: "",
       LastName: "",
@@ -189,7 +196,6 @@ export class PrikazProfilaDialog {
   constructor(public dialogRef: MdDialogRef<PrikazProfilaDialog>, private prikazProfilaService: PrikazProfilaService) {
    this.prikazProfilaService.getProfilResponse(this.dialogRef.config.data).subscribe(res => 
       {
-        console.log(res);
         this.userInfo = res;
       });
   }
@@ -205,7 +211,7 @@ export class PrikazProfilaDialog {
       {{oglas.AdText}}
       </md-dialog-content>
       <div style="display: flex; flex-direction:column;">
-        <div (click)="pogledajProfil(oglas.Id, oglas.User)" style="display: flex;">
+        <div style="display: flex;">
           <i  class="material-icons">person</i> {{oglas.User}}
         </div>
         <div style="display: flex; ">        
@@ -218,7 +224,7 @@ export class PrikazProfilaDialog {
             Javite se na oglas na:
        </label>
        <md-input-container>
-        <input  mdInput type="text" value="{{user?.Email}}" >
+        <input  mdInput type="text" value="{{user?.Email}}" readonly="readonly" >
       </md-input-container>
       </div>
 
