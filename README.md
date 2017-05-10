@@ -8,4 +8,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## If you wanna see it running
 
 At the time of uploading, you can check it at 
-http://jimsrv.no-ip.info:4200/home
+http://jimsrv.no-ip.info:4200
